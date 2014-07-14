@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="base.css"/>
+    <script>
+
+        var secure_chars = ['<', '>'];
+        var replace_with = ['&lt;', '&gt;'];
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementsByTagName('input')[0].addEventListener('keydown', function (event) {
+                if (event.keyCode === 13) {
+                    var text = event.target.value;
+
+                    text = text.replace(/[<>]/g, function(elem){
+                        console.log(elem);
+                        var index = secure_chars.indexOf(elem);
+                        console.log(index);
+                        console.log(replace_with[index]);
+                        return replace_with[index];
+                    });
+
+                    var div = document.createElement('div');
+                    div.innerHTML = text;
+                    div.className = 'comment';
+                    document.getElementById('results').appendChild(div);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<input id="comment" type="text">
+<div id="results">
+
+    <div class="comment">one comment</div><div class="comment">some more</div><div class="comment"><script>console.log('test');</script></div></div>
+
+</body>
+</body>
+</html>

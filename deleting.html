@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="base.css"/>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var div = document.getElementById('container');
+            document.body.firstElementChild.addEventListener('click', function () {
+                for (var i = 0; i < 10; i++) {
+                    var span_parent = document.createElement('span');
+                    var span_child = document.createElement('span');
+                    span_child.innerHTML = (i + 1);
+                    span_parent.appendChild(span_child);
+                    div.appendChild(span_parent);
+                    console.log(span_parent);
+                }
+            });
+
+            document.body.children[1].addEventListener('click', function (event) {
+
+                console.log(event.target);
+
+                var input = document.getElementsByTagName('input')[0];
+                var str = input.value;
+                var children = div.children;
+                for (var i = 0, len = children.length; i < len; i++) {
+                    if (children[i].firstElementChild.innerHTML === str) {
+                        console.log(div.removeChild(children[i]));
+                        return;
+                    }
+                }
+
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+<button>Create List</button><br/>
+<button>Delete List number</button>
+<input type="text" placeholder="list number to delete ... "/>
+
+
+<div id="container">
+</div>
+</body>
+</html>

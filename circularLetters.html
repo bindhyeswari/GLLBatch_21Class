@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Letter Animation</title>
+    <script>
+
+        Number.prototype.toRad = function(){
+            return this * Math.PI / 180;
+        };
+
+        function Position(theta, radius){
+            theta = theta.toRad();
+            this.theta = theta;
+            this.radius = radius;
+            this.x =  radius * Math.cos(theta);
+            this.y =  radius * Math.sin(theta);
+        }
+
+        Position.prototype.toCartesian = function () {
+            return {
+                x:  this.radius * Math.cos(this.theta),
+                y:  this.radius * Math.sin(this.theta)
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function(){
+
+
+            var canvas = document.getElementById('grayscale');
+            var context = canvas.getContext('2d');
+            context.fillStyle = '#aaa';
+            context.font = '3em Avenir';
+            context.textBaseline = 'top';
+
+            var theta = 0,
+                radius = 200;
+
+            var position = new Position(-60, 1000);
+
+            console.log(position);
+
+            context.fillText('C',position.x, position.y);
+
+
+
+
+        });
+    </script>
+</head>
+<body>
+
+<canvas id="grayscale">
+
+</canvas>
+
+</body>
+</html>
